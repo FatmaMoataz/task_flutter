@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
-import 'home/home_screen/home_page.dart';
+import 'package:task4/add_item/item_model.dart';
+import 'package:task4/dashboard/dashboard_screen.dart';
+import 'package:task4/profile/user_model.dart';
+import 'details/details_screen/details_page.dart';
+import 'package:provider/provider.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(
+
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: (context) => UserModel()),
+    ChangeNotifierProvider(create: (context) => ItemModel()),
+  ],
+  child: const MyApp(),
+)
+
+
+    );
 }
 
 class MyApp extends StatelessWidget {
@@ -31,7 +46,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: MyHomePage(),
+      home: DashboardScreen(),
     );
   }
 }
