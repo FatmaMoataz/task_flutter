@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:task4/add_item/item_model.dart';
+import 'package:task4/favorite/favorite_model.dart';
 
-class FavoriteWidget extends StatefulWidget {
-  const FavoriteWidget({super.key});
+class FavoriteWidget extends StatelessWidget {
+  const FavoriteWidget({required this.index,super.key});
 
-  @override
-  State<FavoriteWidget> createState() => _FavoriteWidgetState();
-}
-
-class _FavoriteWidgetState extends State<FavoriteWidget> {
-  bool click = false;
+ final int index;
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        setState(() {
-          click = !click;
-        });
-      },
-      icon: Icon(Icons.favorite, color: click ? Colors.red : Colors.grey),
+    return Consumer<ItemModel>(
+      builder: (context, item, child) {
+        final fav = Provider.of<FavoriteModel>(context,listen:true);
+        final currentItem = item.items[index];
+        return
+       IconButton(
+        onPressed: () {
+fav.isFavorite(currentItem);
+        },
+        icon: Icon(Icons.favorite, color: item.items[index].favorite ? Colors.red : Colors.grey),
+      );
+      }
+
     );
   }
 }

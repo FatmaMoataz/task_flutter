@@ -3,6 +3,8 @@ import 'package:task4/add_item/item.dart';
 import 'package:task4/add_item/item_model.dart';
 import 'package:task4/details/details_screen/details_page.dart';
 import 'package:task4/add_item/add_item_screen.dart';
+import 'package:task4/details/details_widget/details_widget.dart';
+import 'package:task4/favorite/favorite_model.dart';
 import 'package:task4/profile/profile_page/profile_page.dart';
 import 'package:provider/provider.dart';
 import 'package:task4/profile/user_model.dart';
@@ -35,9 +37,10 @@ Navigator.push(context, MaterialPageRoute(builder: (context) => DetailsPage()));
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(items.items[index].title),
-          IconButton(onPressed: () {
-  
-          }, icon: Icon(Icons.favorite))
+          FavoriteWidget(index: items.items.indexOf(items.items[index]))
+  //         IconButton(onPressed: () {
+  // Provider.of<FavoriteModel>(context,listen: false).add(items.items[index]);
+  //         }, icon: Icon(Icons.favorite))
         ],
       )
     ],

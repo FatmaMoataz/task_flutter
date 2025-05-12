@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:task4/add_item/item_model.dart';
 import 'package:task4/dashboard/dashboard_screen.dart';
+import 'package:task4/dashboard/navbar.dart';
+import 'package:task4/favorite/favorite_model.dart';
 import 'package:task4/profile/user_model.dart';
 import 'details/details_screen/details_page.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +13,7 @@ MultiProvider(
   providers: [
     ChangeNotifierProvider(create: (context) => UserModel()),
     ChangeNotifierProvider(create: (context) => ItemModel()),
+    ChangeNotifierProvider(create: (context) => FavoriteModel()),
   ],
   child: const MyApp(),
 )
@@ -46,7 +49,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         useMaterial3: true,
       ),
-      home: DashboardScreen(),
+      home: Navbar(),
     );
   }
 }
